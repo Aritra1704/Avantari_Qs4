@@ -14,8 +14,8 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.arpaul.avantari_2.common.ApplicationInstance;
-import com.arpaul.avantari_2.dataobjects.WordsDO;
+import com.arpaul.avantari_qs2.common.ApplicationInstance;
+import com.arpaul.avantari_qs2.dataobjects.WordsDO;
 import com.arpaul.utilitieslib.LogUtils;
 
 import java.util.ArrayList;

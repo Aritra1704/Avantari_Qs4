@@ -95,22 +95,22 @@ public class MainActivity extends AppCompatActivity {
             if(!letter.equalsIgnoreCase("z")) {
                 if(strOne.contains(letter)) {
                     int posi = strOne.indexOf(letter);
-                    if((posi + 1) <= strOne.size()) {
+                    if((posi + 1) < strOne.size()) {
                         startDownload(strOne.get(posi + 1));
                     }
                 } else if(strTwo.contains(letter)) {
                     int posi = strTwo.indexOf(letter);
-                    if((posi + 1) <= strTwo.size()) {
+                    if((posi + 1) < strTwo.size()) {
                         startDownload(strTwo.get(posi + 1));
                     }
                 } else if(strThree.contains(letter)) {
                     int posi = strThree.indexOf(letter);
-                    if((posi + 1) <= strThree.size()) {
+                    if((posi + 1) < strThree.size()) {
                         startDownload(strThree.get(posi + 1));
                     }
                 } else if(strFour.contains(letter)) {
                     int posi = strFour.indexOf(letter);
-                    if((posi + 1) <= strFour.size()) {
+                    if((posi + 1) < strFour.size()) {
                         startDownload(strFour.get(posi + 1));
                     }
                 }
