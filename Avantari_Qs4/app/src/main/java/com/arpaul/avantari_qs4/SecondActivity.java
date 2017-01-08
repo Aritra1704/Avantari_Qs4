@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arpaul.utilitieslib.ColorUtils;
 
@@ -62,6 +63,13 @@ public class SecondActivity extends AppCompatActivity {
                 tvTitle.setText("The Current Chart");
                 runFadeInAnimation(fab);
                 vTopView.setBackgroundColor(ColorUtils.getColor(SecondActivity.this, R.color.colorPrimary));
+            }
+        });
+
+        vTopView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SecondActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
