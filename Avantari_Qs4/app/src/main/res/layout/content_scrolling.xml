@@ -21,14 +21,14 @@
 
             <TextView
                 android:id="@+id/tvTotalEle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/total_electricity"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/tvAverageEle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/last_12_average"
                 android:textSize="15sp" />

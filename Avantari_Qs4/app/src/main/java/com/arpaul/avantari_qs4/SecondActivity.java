@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arpaul.utilitieslib.ColorUtils;
+
 import static com.arpaul.avantari_qs4.R.styleable.AppBarLayout;
 import static com.arpaul.avantari_qs4.R.styleable.CollapsingToolbarLayout;
 
@@ -22,6 +24,7 @@ public class SecondActivity extends AppCompatActivity {
 //    private Toolbar toolbar;
     private FloatingActionButton fab;
     private ImageView ivBack;
+    private View vTopView;
 //    private CollapsingToolbarLayout toolbar_layout;
 
     @Override
@@ -46,6 +49,7 @@ public class SecondActivity extends AppCompatActivity {
                 runFadeInAnimation(ivBack);
                 tvTitle.setText("Time Power");
                 runFadeOutAnimation(fab);
+                vTopView.setBackgroundColor(ColorUtils.getColor(SecondActivity.this, R.color.colorAccent));
             }
         });
 
@@ -57,11 +61,13 @@ public class SecondActivity extends AppCompatActivity {
                 tvValue.setText("180.9");
                 tvTitle.setText("The Current Chart");
                 runFadeInAnimation(fab);
+                vTopView.setBackgroundColor(ColorUtils.getColor(SecondActivity.this, R.color.colorPrimary));
             }
         });
 
 //        runSlideInAnimation(tvTotalEle);
         tvValue.setText("180.9");
+        vTopView.setBackgroundColor(ColorUtils.getColor(SecondActivity.this, R.color.colorPrimary));
     }
 
     private void runSlideInAnimation(final TextView tv) {
@@ -147,6 +153,8 @@ public class SecondActivity extends AppCompatActivity {
         tvTitle         = (TextView) findViewById(R.id.tvTitle);
 
         ivBack          = (ImageView) findViewById(R.id.ivBack);
+
+        vTopView        = findViewById(R.id.vTopView);
 
 //        toolbar_layout  = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 
