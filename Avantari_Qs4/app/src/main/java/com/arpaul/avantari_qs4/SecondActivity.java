@@ -8,44 +8,149 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import static com.arpaul.avantari_qs4.R.styleable.AppBarLayout;
+import static com.arpaul.avantari_qs4.R.styleable.CollapsingToolbarLayout;
 
 public class SecondActivity extends AppCompatActivity {
+
+    private TextView tvTotalEle, tvAverageEle, tvValue, tvTitle;
+//    private Toolbar toolbar;
+    private FloatingActionButton fab;
+    private ImageView ivBack;
+//    private CollapsingToolbarLayout toolbar_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        initialiseControls();
+
+        bindControls();
+
+    }
+
+    private void bindControls() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                runSlideOutAnimation(tvTotalEle, tvAverageEle);
+//                runSlideInAnimation(tvAverageEle);
+                tvValue.setText("92.3");
+                runFadeInAnimation(ivBack);
+                tvTitle.setText("Time Power");
+                runFadeOutAnimation(fab);
             }
         });
+
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runSlideOutAnimation(tvAverageEle, tvTotalEle);
+                runFadeOutAnimation(ivBack);
+                tvValue.setText("180.9");
+                tvTitle.setText("The Current Chart");
+                runFadeInAnimation(fab);
+            }
+        });
+
+//        runSlideInAnimation(tvTotalEle);
+        tvValue.setText("180.9");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
+    private void runSlideInAnimation(final TextView tv) {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                tv.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        tv.startAnimation(a);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void runSlideOutAnimation(final TextView tvOut, final TextView tvIn) {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {}
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                tvOut.setVisibility(View.GONE);
+                runSlideInAnimation(tvIn);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        tvOut.startAnimation(a);
+    }
+
+    private void runFadeInAnimation(final View iv) {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iv.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        iv.startAnimation(a);
+    }
+
+    private void runFadeOutAnimation(final View iv) {
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        a.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iv.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        iv.startAnimation(a);
+    }
+
+    private void initialiseControls() {
+//        toolbar         = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+
+        fab             = (FloatingActionButton) findViewById(R.id.fab);
+
+        tvTotalEle      = (TextView) findViewById(R.id.tvTotalEle);
+        tvAverageEle    = (TextView) findViewById(R.id.tvAverageEle);
+        tvValue         = (TextView) findViewById(R.id.tvValue);
+        tvTitle         = (TextView) findViewById(R.id.tvTitle);
+
+        ivBack          = (ImageView) findViewById(R.id.ivBack);
+
+//        toolbar_layout  = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+
+        tvAverageEle.setVisibility(View.GONE);
+        ivBack.setVisibility(View.GONE);
     }
 }
